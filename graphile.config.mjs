@@ -2,13 +2,18 @@ import "graphile-config";
 import "postgraphile";
 import { PostGraphileAmberPreset } from "postgraphile/presets/amber";
 import { PostGraphileRelayPreset } from "postgraphile/presets/relay";
+import { PgSimplifyInflectionPreset } from "@graphile/simplify-inflection";
 import { makePgService } from "postgraphile/adaptors/pg";
 
 const isEnvDev = process.env.NODE_ENV === "development";
 
 /** @type {GraphileConfig.Preset} */
 export default {
-  extends: [PostGraphileAmberPreset, PostGraphileRelayPreset],
+  extends: [
+    PostGraphileAmberPreset,
+    PostGraphileRelayPreset,
+    PgSimplifyInflectionPreset,
+  ],
   gather: {
     pgJwtTypes: "public.jwt_token",
   },

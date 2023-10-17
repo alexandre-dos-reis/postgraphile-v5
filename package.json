@@ -12,6 +12,7 @@
     "graphql": "^16.8.1"
   },
   "dependencies": {
+    "@graphile/simplify-inflection": "^8.0.0-beta.3",
     "postgraphile": "beta"
   }
 }
