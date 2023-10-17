@@ -4,11 +4,13 @@
   "scripts": {
     "envvars": "eval export $(cat .env)",
     "migrate": "bun run envvars | DATABASE_URL=$POSTGRAPHILE_DB_URL SHADOW_DATABASE_URL=$GRAPHILE_MIGRATE_SHADOW_URL bunx graphile-migrate",
-    "dev": "bun run envvars | bunx postgraphile -P postgraphile/presets/amber --watch --allow-explain --port $POSTGRAPHILE_PORT --connection $POSTGRAPHILE_DB_URL"
+    "dev": "bun run envvars | bunx postgraphile --watch --allow-explain --port $POSTGRAPHILE_PORT --connection $POSTGRAPHILE_DB_URL"
   },
   "devDependencies": {
     "bun-types": "latest",
-    "graphile-migrate": "^1.4.1"
+    "graphile-migrate": "^1.4.1",
+    "graphql": "^16.8.1",
+    "typescript": "^5.2.2"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
