@@ -14,7 +14,7 @@ create table public.users (
   password_hash text not null
 );
 
-comment on table public.users is E'@behavior +sortBy -insert -update';
+comment on table public.users is E'@behavior +sortBy -insert';
 comment on column public.users.password_hash is E'@behavior -select';
 
 drop type if exists public.jwt_token cascade;
