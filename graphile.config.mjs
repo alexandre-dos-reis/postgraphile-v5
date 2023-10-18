@@ -4,6 +4,7 @@ import { PostGraphileAmberPreset } from "postgraphile/presets/amber";
 import { PostGraphileRelayPreset } from "postgraphile/presets/relay";
 import { PgSimplifyInflectionPreset } from "@graphile/simplify-inflection";
 import { makePgService } from "postgraphile/adaptors/pg";
+import { PgLazyJWTPreset } from "postgraphile/presets/lazy-jwt";
 
 const isEnvDev = process.env.NODE_ENV === "development";
 
@@ -11,8 +12,9 @@ const isEnvDev = process.env.NODE_ENV === "development";
 export default {
   extends: [
     PostGraphileAmberPreset,
-    PostGraphileRelayPreset,
+    // PostGraphileRelayPreset,
     PgSimplifyInflectionPreset,
+    PgLazyJWTPreset,
   ],
   gather: {
     pgJwtTypes: "public.jwt_token",
@@ -30,5 +32,13 @@ export default {
   },
   grafast: {
     explain: isEnvDev,
+    context: (requestContext, args) => {
+      return {
+        pgSettings: {
+          role: "anon",
+          ...args.contextValue.pgSettings,
+        },
+      };
+    },
   },
 };
