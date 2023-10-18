@@ -11,3 +11,36 @@ commit;
 ```sql
 SELECT * FROM pg_roles where "rolname" not like 'pg%'
 ```
+
+```gql
+mutation register {
+  register(
+    input: {
+      firstName: "Alex"
+      lastName: "Dos Reis"
+      email: "alex@mail.com"
+      password: "my-password"
+    }
+  ) {
+    result {
+      firstName
+      lastName
+      email
+    }
+  }
+}
+
+mutation auth {
+  authenticate(input: { email: "alex@mail.com", password: "my-password" }) {
+    result
+  }
+}
+
+query me {
+  currentPerson {
+    firstName
+    lastName
+    email
+  }
+}
+```
