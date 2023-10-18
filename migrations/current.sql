@@ -14,8 +14,8 @@ create table public.users (
   password_hash text not null
 );
 
--- comment on table public.users is E'@behavior +sortBy -insert -update';
--- comment on column public.users.password_hash is E'@behavior -select';
+comment on table public.users is E'@behavior +sortBy -insert -update';
+comment on column public.users.password_hash is E'@behavior -select';
 
 drop type if exists public.jwt_token cascade;
 create type public.jwt_token as (
@@ -88,14 +88,17 @@ $$ language sql stable;
 grant select on table public.users to anon, person;
 grant update, delete on table public.users to person;
 
--- alter table public.users enable row level security;
---
--- create policy update_users on public.users for update to person
---   using (id = nullif(current_setting('jwt.claims.person_id', true), '')::uuid);
---
--- create policy delete_users on public.users for delete to person
---   using (id = nullif(current_setting('jwt.claims.person_id', true), '')::uuid);
---
---
+alter table public.users enable row level security;
+
+create policy select_users on public.users for select to person
+  using (id = nullif(current_setting('jwt.claims.person_id', true), '')::uuid);
+
+create policy update_users on public.users for update to person
+  using (id = nullif(current_setting('jwt.claims.person_id', true), '')::uuid);
+
+create policy delete_users on public.users for delete to person
+  using (id = nullif(current_setting('jwt.claims.person_id', true), '')::uuid);
+
+
 
 

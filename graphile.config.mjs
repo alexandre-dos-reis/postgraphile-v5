@@ -30,6 +30,7 @@ export default {
     port: process.env.POSTGRAPHILE_PORT,
     watch: isEnvDev,
   },
+  disablePlugins: ["NodePlugin"],
   grafast: {
     explain: isEnvDev,
     context: (requestContext, args) => {

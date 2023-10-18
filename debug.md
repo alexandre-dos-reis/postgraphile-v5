@@ -43,4 +43,18 @@ query me {
     email
   }
 }
+
+mutation changeMe {
+  updateUser(
+    input: {
+      rowId: "71292feb-5dd4-40b1-a98e-86c3e17c0e7d"
+      patch: { firstName: "new firstname", lastName: "new lastname" }
+    }
+  ) {
+    user {
+      firstName
+      lastName
+    }
+  }
+}
 ```
