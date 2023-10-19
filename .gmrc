@@ -1,7 +1,4 @@
 {
-  // "connectionString": "postgres://appuser:apppassword@host:5432/appdb",
-  // "shadowConnectionString": "postgres://appuser:apppassword@host:5432/appdb_shadow",
-  // "rootConnectionString": "postgres://adminuser:adminpassword@host:5432/postgres",
   "pgSettings": {
     // "search_path": "app_public,app_private,app_hidden,public",
   },
@@ -10,8 +7,8 @@
   },
 
   "afterReset": [
-    // "afterReset.sql",
-    // { "_": "command", "command": "graphile-worker --schema-only" },
+    "!afterReset.sql",
+    // { "_": "sql", "command": "graphile-worker --schema-only" },
   ],
  
   "afterAllMigrations": [
@@ -29,23 +26,4 @@
     // },
   ],
 
-  /****************************************************************************\
-  ***                                                                        ***
-  ***         You probably don't want to edit anything below here.           ***
-  ***                                                                        ***
-  \****************************************************************************/
-
-  /*
-   * manageGraphileMigrateSchema: if you set this false, you must be sure to
-   * keep the graphile_migrate schema up to date yourself. We recommend you
-   * leave it at its default.
-   */
-  // "manageGraphileMigrateSchema": true,
-
-  /*
-   * migrationsFolder: path to the folder in which to store your migrations.
-   */
-  // migrationsFolder: "./migrations",
-
-  "//generatedWith": "1.4.1"
 }

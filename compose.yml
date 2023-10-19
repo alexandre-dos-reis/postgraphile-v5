@@ -2,11 +2,9 @@ services:
   postgres:
     image: postgres:16-alpine
     restart: always
+    env_file: .env
     volumes:
       - ./.docker/volumes/database/data:/var/lib/postgresql/data
+      - ./init:/docker-entrypoint-initdb.d
     ports:
-      - "${PGPORT}:5432"
-    environment:
-      POSTGRES_DB: ${PGDATABASE}
-      POSTGRES_USER: ${PGUSER}
-      POSTGRES_PASSWORD: ${PGPASSWORD}
+      - "${POSTGRES_PORT}:5432"

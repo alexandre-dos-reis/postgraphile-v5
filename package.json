@@ -3,7 +3,7 @@
   "type": "module",
   "scripts": {
     "envvars": "eval export $(cat .env)",
-    "migrate": "bun run envvars | DATABASE_URL=$POSTGRAPHILE_DB_URL SHADOW_DATABASE_URL=$GRAPHILE_MIGRATE_SHADOW_URL ROOT_DATABASE_URL=$GRAPHILE_MIGRATE_ROOT_URL bunx graphile-migrate",
+    "migrate": "bun run envvars | DATABASE_URL=$GM_DB_URL SHADOW_DATABASE_URL=$GM_SHADOW_DB_URL ROOT_DATABASE_URL=$GM_ROOT_DB_URL bunx graphile-migrate",
     "dev": "bun run envvars | NODE_ENV=development bunx postgraphile --watch"
   },
   "devDependencies": {

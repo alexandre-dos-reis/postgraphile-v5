@@ -23,7 +23,10 @@ export default {
     pgJwtSecret: process.env.POSTGRAPHILE_JWT_SECRET,
   },
   pgServices: [
-    makePgService({ connectionString: process.env.POSTGRAPHILE_DB_URL }),
+    makePgService({
+      connectionString: process.env.POSTGRAPHILE_DB_URL,
+      superuserConnectionString: process.env.POSTGRAPILE_DB_SUPERUSER_URL, // for watch mode, only in dev mode...
+    }),
   ],
   grafserv: {
     dangerouslyAllowAllCORSRequests: isEnvDev,
