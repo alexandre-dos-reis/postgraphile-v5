@@ -3,7 +3,8 @@
     // "search_path": "app_public,app_private,app_hidden,public",
   },
   "placeholders": {
-    // ":DATABASE_VISITOR": "!ENV", // Uses process.env.DATABASE_VISITOR
+    ":POSTGRAPHILE_ANON_ROLE": "!ENV",
+    ":POSTGRAPHILE_USER_ROLE": "!ENV"
   },
 
   "afterReset": [
